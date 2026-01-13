@@ -1,8 +1,5 @@
 package com.bristlestone;
 
-
-
-
 public class TestFinal {
 	final int id;
 	public TestFinal(int id) {

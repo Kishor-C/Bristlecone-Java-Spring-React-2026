@@ -10,6 +10,7 @@ public class TestClient {
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Enter the number of users you want to add");
 		int size = scan.nextInt();
+		// UserService service2 = new UserServiceImpl();
 		// loosely coupled
 		UserService service = UserFactory.getInstance(size);
 		for(int i = 0; i < size; i++) {

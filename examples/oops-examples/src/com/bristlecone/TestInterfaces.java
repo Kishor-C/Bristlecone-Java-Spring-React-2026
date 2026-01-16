@@ -1,4 +1,4 @@
-package com.bristlestone;
+package com.bristlecone;
 
 interface TicketBooking {
 	void bookTicket(); // public abstract void bookTicket

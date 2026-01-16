@@ -1,4 +1,4 @@
-package com.bristlestone;
+package com.bristlecone;
 
 class PrintData {
 	/*

@@ -1,4 +1,4 @@
-package com.bristlestone;
+package com.bristlecone;
 
 import java.time.LocalDate;
 

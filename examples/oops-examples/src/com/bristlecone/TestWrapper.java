@@ -1,4 +1,4 @@
-package com.bristlestone;
+package com.bristlecone;
 
 public class TestWrapper {
 	public static void main(String[] args) {

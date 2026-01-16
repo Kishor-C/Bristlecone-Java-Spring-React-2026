@@ -1,4 +1,4 @@
-package com.bristlestone;
+package com.bristlecone;
 abstract class Car { 
 	abstract double getPrice();
 	abstract void mileage();

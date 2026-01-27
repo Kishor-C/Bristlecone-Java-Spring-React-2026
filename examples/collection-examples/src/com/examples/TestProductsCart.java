@@ -65,6 +65,8 @@ public class TestProductsCart {
 			}
 			case 4: {
 				// clear all the products in the cart
+				cart.clear();
+				System.out.println("Cart is cleared and it has "+cart.size()+" products");
 				break;
 			}
 			}

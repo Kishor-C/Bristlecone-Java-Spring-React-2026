@@ -22,11 +22,30 @@ public class ProfileService {
 	@Autowired
 	private ProfileRepo profileDao;
 	
+	@Autowired
+	private ContactRepo contactDao;
+	
+	/*
+	 * 
+	 * Add contact to a particular profile
+	 * 
+	 */
+	@Transactional
+	public Contact saveContact(Contact contact, int profileId) {
+		contact.setProfileref(profileId);
+		return contactDao.save(contact);
+	}
+	
+	
 	/*
 	 * there are built-in methods like save(T), findAll
 	 * to store & retrieve 
 	 */
-	
+	// authenticate method that accepts id and password
+	public Profile authenticate(int profileId, String password) throws ProfileNotFoundException {
+		Optional<Profile> option = profileDao.login(profileId, password);
+		return option.orElseThrow(() -> new ProfileNotFoundException("Id or Password is incorrect"));
+	}
 	// findById that 
 	public Profile fetchProfile(int id) throws ProfileNotFoundException {
 		// findById returns Optional, some methods it has orElse, orElseThrow, isPresent

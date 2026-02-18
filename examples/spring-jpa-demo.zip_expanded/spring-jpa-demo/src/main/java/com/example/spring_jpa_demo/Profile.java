@@ -1,11 +1,15 @@
 package com.example.spring_jpa_demo;
 
 import java.time.LocalDate;
+import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 
 /*
  * JPA treats table name & class name same
@@ -20,9 +24,26 @@ public class Profile {
 	
 	private String name;
 	
+	private String password;
+	
 	private long phone;
 	
 	private LocalDate dob;
+	
+	// this annotation joins profile & contact table
+	// using the primary key & foreign key values
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "profileref")
+	private List<Contact> contactList;
+	
+
+	public List<Contact> getContactList() {
+		return contactList;
+	}
+
+	public void setContactList(List<Contact> contactList) {
+		this.contactList = contactList;
+	}
 
 	public int getProfileId() {
 		return profileId;
@@ -34,6 +55,13 @@ public class Profile {
 
 	public String getName() {
 		return name;
+	}
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public void setName(String name) {

@@ -28,6 +28,25 @@ public class ProfileController {
 		Profile createdProfile = profileService.createProfile(profile);
 		return ResponseEntity.status(200).body(createdProfile);
 	}
+	
+	// login will accept profile in JSON but it will have only id and password
+	@PostMapping(path = "/profile/login")
+	public ResponseEntity<Object> login(@RequestBody Profile profile) {
+		try {
+			Profile p = profileService.authenticate(profile.getProfileId(), profile.getPassword());
+			return ResponseEntity.status(200).body(p);
+		} catch(ProfileNotFoundException e) {
+			Map<String, String> map = Map.of("message", e.getMessage());
+			return ResponseEntity.status(404).body(map);
+		}
+	}
+	// add contact to a particular profile
+	@PostMapping(path = "/profile/contact/{id}")
+	public ResponseEntity<Object> createContact(@RequestBody Contact contact, @PathVariable("id") int profileId) {
+		Contact createdContact = profileService.saveContact(contact, profileId);
+		return ResponseEntity.status(200).body(createdContact);
+	}
+	
 	// return all the profiles in JSON 
 	@GetMapping(path = "/profile")
 	public ResponseEntity<Object> findProfiles() {

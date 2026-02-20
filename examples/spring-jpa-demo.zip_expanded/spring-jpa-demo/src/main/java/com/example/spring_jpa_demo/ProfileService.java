@@ -26,6 +26,12 @@ public class ProfileService {
 	private ContactRepo contactDao;
 	
 	/*
+	 * Filter the contacts based on the profile id and name pattern
+	 */
+	public List<Contact> fetchContactsByName(int profileId, String name) {
+		return contactDao.filterContacts(profileId, name);
+	}
+	/*
 	 * 
 	 * Add contact to a particular profile
 	 * 

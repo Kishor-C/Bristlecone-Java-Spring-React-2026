@@ -21,6 +21,16 @@ public class ProfileController {
 	@Autowired
 	private ProfileService profileService;
 	
+	// fetch contacts based on profile id and name
+	// when the path parameter name and method parameter name same, 
+	//then using parameter name in the path variable is optional
+	@GetMapping(path = "/profile/{id}/contact/{name}")
+	public ResponseEntity<Object> findContactsByName(@PathVariable int id, @PathVariable String name) {
+		List<Contact> list = profileService.fetchContactsByName(id, name);
+		return ResponseEntity.status(200).body(list);
+	}
+	
+	
 	// accept the JSON data & pass it to the createProfile
 	
 	@PostMapping(path = "/profile")

@@ -1,0 +1,17 @@
+p {
+    color: blue;
+    border: 2px solid red;
+    padding: 25px;
+}
+h2 { 
+    border: 3px solid blue;
+    padding: 25px;
+}
+.danger { 
+    color: red;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.success {
+    color : green;
+    font-family: Arial, Helvetica, sans-serif;
+}

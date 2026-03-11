@@ -1,15 +1,20 @@
 import axios from "axios";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { ProfileContext } from "../App";
 
 export function FetchProfiles() {
     let url = "http://localhost:3000/profiles";
     let [profile, setProfile] = useState([]);
     
+    // using the common data
+    let userData = useContext(ProfileContext);
+
     let handleClick = (e) => {
         axios.get(url).then((res)=>setProfile(res.data));
     }
     return (<div>
         <h2>Profiles list</h2><hr />
+        <h3>Name = {userData.name}, Age = {userData.age}</h3>
         <button className = "btn btn-primary" onClick = {handleClick}>Fetch</button>
         <div>
           <table className = "table">
@@ -35,14 +40,16 @@ export function RegistrationForm() {
   let [name, setName] = useState("");
   let [phone, setPhone] = useState("");
   let [dob, setDob] = useState("");
+  let [message, setMessage] = useState("");
 
   // handler to handle submit event
   let handleSubmit = (e) => {
     e.preventDefault();
-    alert("data must be sent to backend");
+    let data = {"name":name, "phone":phone, "dob":dob};
+    let url = "http://localhost:3000/profiles";
+    axios.post(url, data).then((res)=>setMessage("Registered with an id: "+res.data.id))
   }
   return (<div className="container-fluid">
-   
     <div className="w-50">
       <h2>User Form</h2>
       <form onSubmit = {handleSubmit}>
@@ -55,8 +62,8 @@ export function RegistrationForm() {
         <br />
         <input type = "submit" value = "Register" className="btn btn-primary"/>
       </form>
-      <div>
-        Name: {name}, Phone: {phone}, Dob: {dob}
+      <div className = "text-success">
+        {message}
       </div>
     </div>
     

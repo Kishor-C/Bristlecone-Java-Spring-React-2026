@@ -1,8 +1,12 @@
+import { useContext } from "react";
+import { ProfileContext } from "../App";
 
 // create a component as below
 export function Greet(props) {
-  let username = props.username
-  let age = props.age;
+  
+  let user = useContext(ProfileContext);
+  let username = user.name;
+  let age = user.age;
   return (<div>
     <h1>Hello {username}</h1>
     <p>Your age is {age}</p>
